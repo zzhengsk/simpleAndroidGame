@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author:Zhanhong Zheng -->
+<!-- Course:CS211D -->
+<!-- program Name:main.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:text="Welcome to play"
+        android:textColor="#000000" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19dp"
+                android:text="your name:"
+                android:textColor="#D2691E" />
+
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+        </TableRow>
+    </TableLayout>
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="center">
+        <RadioButton
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:text="guess state name"
+            android:textColor="#228B22" />
+ 	   <RadioButton
+      	    android:id="@+id/capital"
+     	    android:layout_width="wrap_content"
+      	    android:layout_height="wrap_content"
+      	    android:textSize="19dp"
+    	    android:text="guess capital name"
+    	    android:textColor="#228B22" />
+  	</RadioGroup>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="5"
+        android:visibility="gone"
+        android:textSize="19dp"
+        android:text="start!"
+        android:textColor="#FF0000"/>
+</LinearLayout>

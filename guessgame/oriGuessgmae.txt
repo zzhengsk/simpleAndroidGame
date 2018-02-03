@@ -1,0 +1,151 @@
+package com.stateCapital;
+
+import java.io.InputStream;
+
+import org.apache.http.util.EncodingUtils;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.view.Gravity;
+import android.view.View;
+
+public class guessing extends Activity
+{
+/*	String states[]={"Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
+			"Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas",
+			"Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota",
+			"Mississippi","Missouri","Montana","Neberaska","Nevada","New Hampshire","New Jersey",
+			"New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon",
+			"Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas",
+			"Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"};
+	String capitals[]={"Montgomery","Juneau","Phoenix","Little Rock","Sacramento","Denver","Hartford",
+			"Dover","Tallahassee","Atlanta","Honolulu","Boise","Springfield","Indianapolis","De Moines",
+			"Topeka","Frankfort","Baton Rouge","Augustina","Annapolis","Boston","Lansing","Saint Paul",
+			"Jackson","Jefferson City","Helena","Lincoln","Carson City","Concord","Trenton","Santa Fe",
+			"Albany","Raleigh","Bismarck","Columbus","Oklahoma City","Salem","Harrisburg","Providence",
+			"Columbia","Pierre","Nashvile","Austin","Salt Lake City","Montpelier","Richmond","Olympia",
+			"Charleston","Madison","Cheyenne"};  */
+	TextView title,ch,info;
+	EditText answerInput;
+	Button btnOK;
+	SharedPreferences score;
+	int chance = 3,point = 0,randNum;
+	String question;
+	String states[];
+    String capitals[];
+	@Override
+    public void onCreate(Bundle b) 
+    {
+        super.onCreate(b);
+        setContentView(R.layout.start);
+        final Intent i=getIntent();
+        final String value=i.getStringExtra("choice");
+        title = (TextView)findViewById(R.id.title);
+        ch = (TextView)findViewById(R.id.chances);
+        info = (TextView)findViewById(R.id.infomation);
+        answerInput = (EditText)findViewById(R.id.answerInput);
+        btnOK = (Button)findViewById(R.id.btnOK);
+        
+        String res="";       
+        res = getFileData(new String("states.txt"));
+        states=res.split(",");
+        res = getFileData(new String("capitals.txt"));
+        capitals=res.split(",");  
+        
+        randNum =(int)(50*Math.random());
+        
+        if(value.equalsIgnoreCase("state"))
+        {	
+        	title.setText("To guess the state name");
+        	info.setText("Capital name: " + capitals[randNum]);
+        	question=states[randNum];
+        }	
+        else
+        {
+        	title.setText("To guess the capital name");
+        	info.setText("State name: " + states[randNum]);
+        	question=capitals[randNum];
+        }
+        ch.setText("you have " + chance + " to guess");
+
+    	btnOK.setOnClickListener(new View.OnClickListener()
+        {
+    		
+        	public void onClick(View v)
+        	{
+        		String answer = answerInput.getText().toString();
+        		if(answer.equalsIgnoreCase(question))
+        		{
+        			
+					Toast t = Toast.makeText(getApplicationContext(), "right" ,Toast.LENGTH_SHORT);
+        			t.setGravity(Gravity.TOP, 0, 73);
+        			t.show();
+        			point++;
+        			randNum =(int)(50*Math.random());
+        			if(value.equalsIgnoreCase("state"))
+        			{
+        				question = states[randNum];
+        	        	info.setText("Capital name: " + capitals[randNum]);
+        			}
+        			else
+        			{
+        				question = capitals[randNum];
+        				info.setText("State name: " + states[randNum]);
+        			}
+        		}
+        		
+        		else
+        		{		
+        			Toast t = Toast.makeText(getApplicationContext(), "wrong",Toast.LENGTH_SHORT);
+        			t.setGravity(Gravity.TOP, 0, 73);
+        			t.show();
+        			chance--;
+        			ch.setText("you have " + chance + " to guess");
+        			randNum =(int)(50*Math.random());
+        			if(chance<=0)
+        			{
+        		        score = guessing.this.getSharedPreferences("userscore", Context.MODE_PRIVATE);
+        		        SharedPreferences.Editor ed = score.edit();
+        		        ed.putInt("score",point);
+        		        ed.commit();     
+        		        i.setClass(guessing.this,result.class);
+        		        finish();
+        		        startActivity(i);
+        			}
+        			if(value.equalsIgnoreCase("state"))
+        			{
+        				question = states[randNum];
+        	        	info.setText("Capital name: " + capitals[randNum]);
+        			}
+        			else
+        			{
+        				question = capitals[randNum];
+        				info.setText("State name: " + states[randNum]);
+        			}
+        		}
+        	}
+        });
+    }    
+	
+//*************************getFileData******************************
+    private String getFileData(String text)
+    {
+    	String data="";
+        try
+        {
+        	InputStream in = getResources().getAssets().open(text);
+        	int length = in.available();
+        	byte [] buffer = new byte[length];
+        	in.read(buffer); 
+        	data = EncodingUtils.getString(buffer, "UTF-8"); 
+        }catch(Exception e){e.printStackTrace();}
+        return (data);
+    }
+}

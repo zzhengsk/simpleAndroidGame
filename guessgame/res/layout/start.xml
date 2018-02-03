@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author:Zhanhong Zheng -->
+<!-- Course:CS211D -->
+<!-- program Name:showresult.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="19dp"
+        android:textColor="#000000" />
+
+
+    <TextView
+        android:id="@+id/chances"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="19dp"
+        android:textColor="#FF0000" />
+
+    <TextView 
+        android:id="@+id/infomation"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:textColor="#D2691E"
+       />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19dp"
+                android:text="your answer:"
+                android:textColor="#D2691E" />
+
+            <EditText
+                android:id="@+id/answerInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="19dp"
+        android:text="OK!"
+        android:ems="5"/>
+</LinearLayout>
