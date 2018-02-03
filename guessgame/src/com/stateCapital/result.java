@@ -1,6 +1,3 @@
-//Author:Zhanhong Zheng
-//Course:cs211d
-//program name:result.java
 //objective:show the result
 
 package com.stateCapital;
