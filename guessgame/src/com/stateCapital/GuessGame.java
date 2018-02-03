@@ -1,10 +1,3 @@
-//Author:Zhanhong Zheng
-//Course:cs211d
-//Homework #6
-//program name:GuessGame.java
-//objective:using sqlite store data
-//			guess the state name or the capital name
-
 package com.stateCapital;
 import android.app.Activity;
 import android.os.Bundle;
