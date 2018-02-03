@@ -1,6 +1,3 @@
-//Author:Zhanhong Zheng
-//Course:cs211d
-//program name:storeData.java
 //objective:using sqlite to store data 
 
 package com.stateCapital;
