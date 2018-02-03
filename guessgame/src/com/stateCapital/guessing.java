@@ -1,6 +1,3 @@
-//Author:Zhanhong Zheng
-//Course:cs211d
-//program name:guessing.java
 //objective:check the answer
 
 package com.stateCapital;
